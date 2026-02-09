@@ -126,26 +126,28 @@ const AddProductForm = ({ addProduct, editingProduct, onCancelEdit }) => {
             />
           </div>
 
-          <div className="form-group">
-            <label>Cell</label>
-            <input
-              type="number"
-              placeholder="0"
-              value={cellQuantity}
-              onChange={(e) => setCellQuantity(e.target.value)}
-              min="0"
-            />
-          </div>
+          <div className="cell-tier-row">
+            <div className="form-group">
+              <label>Cell</label>
+              <input
+                type="number"
+                placeholder="0"
+                value={cellQuantity}
+                onChange={(e) => setCellQuantity(e.target.value)}
+                min="0"
+              />
+            </div>
 
-          <div className="form-group">
-            <label>Tier</label>
-            <input
-              type="number"
-              placeholder="0"
-              value={tierQuantity}
-              onChange={(e) => setTierQuantity(e.target.value)}
-              min="0"
-            />
+            <div className="form-group">
+              <label>Tier</label>
+              <input
+                type="number"
+                placeholder="0"
+                value={tierQuantity}
+                onChange={(e) => setTierQuantity(e.target.value)}
+                min="0"
+              />
+            </div>
           </div>
 
           <div className="timings-container">
