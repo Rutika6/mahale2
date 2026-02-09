@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ProductTable = ({ products, deleteProduct }) => {
+const ProductTable = ({ products, deleteProduct, updateProduct }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredProducts = products.filter((p) =>
@@ -33,6 +33,7 @@ const ProductTable = ({ products, deleteProduct }) => {
                 <th>Fractile</th>
                 <th>Cell</th>
                 <th>Tier</th>
+                <th>Timings</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -47,7 +48,21 @@ const ProductTable = ({ products, deleteProduct }) => {
                     <td className="sub-qty">{p.fractileQuantity || "-"}</td>
                     <td className="sub-qty">{p.cellQuantity || "-"}</td>
                     <td className="sub-qty">{p.tierQuantity || "-"}</td>
+                    <td className="timings-cell">
+                      {p.timing ? (
+                        <span className="timing-badge">{p.timing}</span>
+                      ) : (
+                        <span className="no-timings">-</span>
+                      )}
+                    </td>
                     <td>
+                      <button
+                        className="update-btn"
+                        onClick={() => updateProduct(originalIndex)}
+                        title="Update"
+                      >
+                        Update
+                      </button>
                       <button
                         className="delete-btn"
                         onClick={() => deleteProduct(originalIndex)}

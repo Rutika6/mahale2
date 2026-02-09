@@ -6,13 +6,25 @@ import AddProductModal from "./components/AddProductModal";
 
 const App = () => {
   const [products, setProducts] = useState([]);
+  const [editingIndex, setEditingIndex] = useState(null);
 
   const addProduct = (product) => {
-    setProducts([...products, product]);
+    if (editingIndex !== null) {
+      const updatedProducts = [...products];
+      updatedProducts[editingIndex] = product;
+      setProducts(updatedProducts);
+      setEditingIndex(null);
+    } else {
+      setProducts([...products, product]);
+    }
   };
 
   const deleteProduct = (index) => {
     setProducts(products.filter((_, i) => i !== index));
+  };
+
+  const updateProduct = (index) => {
+    setEditingIndex(index);
   };
 
   return (
@@ -20,8 +32,8 @@ const App = () => {
       <div className="app-title">MAHALE INDUSTRIES</div>
 
       <DashboardCards products={products} />
-      <AddProductModal addProduct={addProduct} />
-      <ProductTable products={products} deleteProduct={deleteProduct} />
+      <AddProductModal addProduct={addProduct} editingProduct={editingIndex !== null ? products[editingIndex] : null} onCancelEdit={() => setEditingIndex(null)} />
+      <ProductTable products={products} deleteProduct={deleteProduct} updateProduct={updateProduct} />
     </div>
   );
 };
